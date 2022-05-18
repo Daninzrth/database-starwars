@@ -15,6 +15,9 @@ class User(Base):
     last_name = Column(String(100), nullable=False)
     email = Column(String(50), nullable=False)
     password = Column(String(50), nullable=False)
+    planets = relationship ('Planets')
+    characters = relationship ('Characters')
+    vehicles = relationship ('Vehicles')
 
 class Characters(Base):
     __tablename__ = 'characters'
@@ -47,6 +50,7 @@ class FavPlanets(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
     planet_id = Column(Integer, ForeignKey('planets.id'))
+    planets = relationship('Planets')
 
 class FavCharacters(Base):
     __tablename__ = 'user_characters'
@@ -55,6 +59,7 @@ class FavCharacters(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
     characters_id = Column(Integer, ForeignKey('characters.id'))
+    characters= relationship('Characters')
 
 class FavVehicles(Base):
     __tablename__ = 'user_vehicles'
@@ -63,6 +68,7 @@ class FavVehicles(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
     vehicles_id = Column(Integer, ForeignKey('vehicles.id'))
+    vehicles = relationship('Vehicles')
 
 
 '''
